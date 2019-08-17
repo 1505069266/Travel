@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>列表渲染</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div v-for="(item,index)  in list">{{item}}----{{index+1}}</div>
+    </div>
+    <script>
+        var vm = new Vue({
+            //数组方法
+            //1.push  数组最后加一项
+            //2.pop  删除数组最后一项
+            //3.shift  数组最前面增加一项
+            //4.unshift  删除数组最前面一项
+            //5.splice  
+            //6.sort  排序
+            //7.reserve  取反
+            el:"#app",
+            data:{
+                list:["hello","dell","one","two","three","four"]
+            }
+        })
+    </script>
+</body>
+</html>

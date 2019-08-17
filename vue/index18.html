@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>动态组件与v-once指令</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- 动态组件  根据is绑定的组件名来判断组件的信息,显示不同的组件 -->
+        <component :is="type"></component> 
+        <!-- <childone v-if="type === 'childone'">
+        </childone>
+        <childtwo v-if="type === 'childtwo'"></childtwo> -->
+        <button @click="handleBtnClick">change</button>
+    </div>
+    <script>
+        //父组件如何向子组件插入DOM
+        //聚名插槽
+        Vue.component('childone',{  
+            data(){
+                return{
+                    list:[1,2,3,4]
+                }
+            },
+            template:"<div v-once>childone</div>" //在组件中加入v-once来提高渲染效率  因为是存在内存中的
+        })
+        Vue.component('childtwo',{  
+            data(){
+                return{
+                    list:[1,2,3,4]
+                }
+            },
+            template:"<div v-once>childtwo</div>" //在组件中加入v-once来提高渲染效率  因为是存在内存中的
+        })
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                type:'childone'
+            },
+            methods:{
+                handleBtnClick(){
+                    this.type = this.type === "childone"?"childtwo":"childone"
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>组件参数校验与非props特性</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <child :count="father"></child>
+    </div>
+    <script>
+        Vue.component("child",{
+            props:{
+                // count:[String,Number]
+                count:{
+                    type:[String,Number], //规定传过来的对象的类型
+                    required:true, //规定改值是必传的
+                    default:"我是默认的内容",  //如果不传这个值  默认是这里的内容
+                    validator:function(value){ //验证传入的值的方法
+                        return (value.length>2)
+                    }
+                }
+            },
+            template:"<div>Child{{count}}</div>"
+        })
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                father:"222"
+            },
+            methods:{
+
+            }
+        })
+    </script>
+</body>
+</html>

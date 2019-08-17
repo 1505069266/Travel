@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>计算属性,方法,侦听器</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{fullName}}
+        {{age}}
+    </div>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                firstName: '朱',
+                lastName: '晓乐',
+                fullName: '朱晓乐',
+                age: 23
+            },
+            watch:{
+                firstName(){
+                    console.log('计算了一次');
+                    this.fullName = this.firstName + this.lastName
+                },
+                lastName(){
+                    console.log('计算了一次');
+                    this.fullName = this.firstName + this.lastName
+                }
+            }
+            // computed:{  //内置缓存
+            //     fullName(){
+            //         console.log('计算了一次');
+            //         return this.firstName + this.lastName
+            //     }
+            // },
+            // methods:{
+            //     fullName(){
+            //         console.log('计算了一次');
+            //         return this.firstName + this.lastName
+            //     }
+            // }
+
+
+        })
+    </script>
+</body>
+</html>

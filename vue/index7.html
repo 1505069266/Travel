@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue中的样式绑定</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .activated{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div 
+        @click="handleDivClick"
+        :class="[activated]"
+        :style="[styleObj,{border:'12px solid black'}]" 
+        >
+            66666666666666
+        </div>
+    </div>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                activated:'',
+                styleObj:{
+                    fontSize: "50px"
+                }
+            },
+            methods:{
+                handleDivClick(){
+                    this.activated = this.activated === "activated"?"":"activated"
+                    this.styleObj.fontSize = this.styleObj.fontSize === "50px"?"20px":"50px"
+                }
+            }
+        })
+    </script>
+</body>
+</html>
