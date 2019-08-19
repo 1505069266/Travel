@@ -4,29 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Vue中的使用animate.css库</title>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="./animate.css">
     <style>
-        .fade-enter{
-            opacity: 0;
-        }
-        .fade-enter-active{
-            transition:opacity 3s;
-        }
-        .fade-leave-to{
-            opacity: 0;
-        }
-        .fade-leave-active{
-            transition:opacity 3s;
-        }
     </style>
 </head>
 <body>
     <div id="app">
-        <transition name="fade">
-            <div v-if="show">666666</div>
-        </transition>
-        <button @click="handleBtnClick">点我</button>
+        <transition 
+        name="fade"
+        enter-active-class="animated rollOut"
+        leave-active-class="animated rollIn"
+        >
+            <div v-show="show">Hello</div>
+        </transition>  
+        <button @click="handleBtnClick">dddd</button> 
     </div>
     <script>
         var vm = new Vue({
@@ -36,7 +29,10 @@
             },
             methods:{
                 handleBtnClick(){
+                    console.log(2);
+                    console.log(this.show);
                     this.show = !this.show
+                    console.log(this.show);
                 }
             }
         })

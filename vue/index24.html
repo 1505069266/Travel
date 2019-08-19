@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue中多个元素或组件的过渡</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .v-enter,.v-leave-to{
+            opacity:0;
+        }
+        .v-enter-active,.v-leave-active{
+            transition:opacity 1s;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- in-out 先进入  在隐藏
+        out-in 先隐藏 在进入 -->
+        <transition mode="out-in">
+            <component :is="type"></component>
+            <!-- <div v-if="show" key="hello">Hello</div>
+            <div v-else key="bye">Bye</div> -->
+        </transition>
+        <button @click="handleClick">点我</button>
+    </div>
+    <script>
+        Vue.component('child',{
+            template:"<div>child</div>"
+        })
+        Vue.component('childone',{
+            template:"<div>childone</div>"
+        })
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                type:'child'
+            },
+            methods:{
+                handleClick(){
+                    this.type = this.type === 'child'?'childone':'child'
+                },
+            }
+        })
+    </script>
+</body>
+</html>
